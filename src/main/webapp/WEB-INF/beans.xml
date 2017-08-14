@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_1.xsd">
+
+    <interceptors>
+        <class>org.jboss.errai.security.server.ServerSecurityRoleInterceptor</class>
+    </interceptors>
+  <scan>
+    <!-- These exclusions were added by Errai to avoid deploying client-side classes to the server -->
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.SenderMessagePanel" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.App" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.MessageListener" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.Receiver" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.ReceiverMessagePanel" />
+    <!-- End of Errai exclusions -->
+  </scan>
+</beans>
