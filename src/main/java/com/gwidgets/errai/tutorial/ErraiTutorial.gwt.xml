@@ -2,18 +2,16 @@
         "-//Google Inc.//DTD Google Web Toolkit 1.6//EN"
         "http://google-web-toolkit.googlecode.com/svn/releases/1.6/distro-source/core/src/gwt-module.dtd">
 <module rename-to="ErraiTutorial">
-    <inherits name="com.google.gwt.user.User"/>
-    <inherits name="org.jboss.errai.security.Security"/>
-    <inherits name="org.jboss.errai.enterprise.CDI"/>
-    <inherits name="org.jboss.errai.bus.ErraiBus"/>
-    <inherits name="org.jboss.errai.ioc.Container"/>
-    <inherits name="org.jboss.errai.ui.UI"/>
-    <inherits name="org.jboss.errai.ui.nav.Navigation"/>
-
+    <inherits name="org.jboss.errai.enterprise.All"/>
     <!-- slf4j - logging -->
-    <inherits name="org.jboss.errai.common.ErraiCommon" />
+    <inherits name="org.jboss.errai.common.ErraiCommon"/>
     <set-property name="gwt.logging.enabled" value="TRUE"/>
     <set-property name="gwt.logging.logLevel" value="ALL"/>
+
+    <add-linker name="xsiframe"/>
+    <set-property name="compiler.useSourceMaps" value="true"/>
+    <set-configuration-property name="includeSourceMapUrl"
+                                value="http://localhost:8888/tutorial/src/__HASH___sourceMap__FRAGMENT__.json"/>
 
 
 </module>
