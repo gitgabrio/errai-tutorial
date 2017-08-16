@@ -31,6 +31,7 @@ public class ReceiverEventPanel extends VerticalPanel {
         this.add(contactTextBox);
         this.addStyleName("verticalPanel");
     }
+
     /**
      * This is called in response to Errai CDI {@link javax.enterprise.event.Event Events} fired from the server when a
      * new {@link Contact} is created. In this way we can display newly created contacts from other browser sessions.

@@ -58,15 +58,6 @@ public class SenderEventPanel extends HorizontalPanel {
     private Button sendServerMessageButton() {
         Button button = new Button(ContactStorageServiceImpl.CONTACTSTORAGE_SUBJECT);
         button.addClickHandler(event -> {
-//                    MessageBuilder.createMessage()
-//                            .toSubject(ContactStorageServiceImpl.CONTACTSTORAGE_SUBJECT)
-//                            .signalling()
-//                            .with("fullname", fullnameTextBox.getText())
-//                            .with("nickname", nicknameTextBox.getText())
-//                            .with("operationType", Operation.OperationType.CREATE.name())
-//                            .with("sessionId", bus.getSessionId())
-//                            .noErrorHandling()
-//                            .sendNowWith(dispatcher);
                     createNewContactFromEditor();
                 }
         );
