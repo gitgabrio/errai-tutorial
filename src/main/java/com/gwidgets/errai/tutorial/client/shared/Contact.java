@@ -16,8 +16,9 @@
 
 package com.gwidgets.errai.tutorial.client.shared;
 
-import org.jboss.errai.common.client.api.annotations.MapsTo;
 import org.jboss.errai.common.client.api.annotations.Portable;
+
+import javax.persistence.*;
 
 /**
  * Models a contact in an address book.
@@ -25,31 +26,33 @@ import org.jboss.errai.common.client.api.annotations.Portable;
  * parameters or return values of Errai RPC methods. It also allows {@link Contact} instances to be fired and observed
  * as Errai CDI events between client and server.
  * <p>
+ * {@link Entity} allows this class to be easily persisted on the server via JPA and {@link NamedQueries} defines a
+ * query for looking up all persisted {@link Contact Contacts}.
  */
 @Portable
+@Entity
+@NamedQueries({
+        @NamedQuery(name = Contact.ALL_CONTACTS_QUERY, query = "SELECT c FROM Contact c ORDER BY c.id")
+})
 public class Contact {
 
   public static final String ALL_CONTACTS_QUERY = "allContacts";
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private long id;
 
   private String fullname;
 
   private String nickname;
 
-
-  public Contact(final @MapsTo("fullname") String fullname, final  @MapsTo("nickname") String nickname) {
-    this.fullname = fullname;
-    this.nickname = nickname;
-  }
-
   public String getFullname() {
     return fullname;
   }
 
-//  public void setFullname(String fullname) {
-//    this.fullname = fullname;
-////  }
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
+  }
 
   public long getId() {
     return id;
@@ -63,9 +66,9 @@ public class Contact {
     return nickname;
   }
 
-//  public void setNickname(String nickname) {
-//    this.nickname = nickname;
-//  }
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
+  }
 
   @Override
   public String toString() {

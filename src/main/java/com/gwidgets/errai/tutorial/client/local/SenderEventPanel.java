@@ -65,7 +65,9 @@ public class SenderEventPanel extends HorizontalPanel {
     }
 
     private void createNewContactFromEditor() {
-        final Contact editorModel = new Contact(fullnameTextBox.getText(), nicknameTextBox.getText());
+        final Contact editorModel = new Contact();
+        editorModel.setFullname(fullnameTextBox.getText());
+        editorModel.setNickname(nicknameTextBox.getText());
         contactService.call((final Response response) -> {
             // Set the id if we successfully create this contact.
             if (response.getStatusCode() == Response.SC_CREATED) {

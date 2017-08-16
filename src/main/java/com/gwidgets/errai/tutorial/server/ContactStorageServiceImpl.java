@@ -20,9 +20,6 @@ import com.gwidgets.errai.tutorial.client.shared.Contact;
 import com.gwidgets.errai.tutorial.client.shared.ContactOperation;
 import com.gwidgets.errai.tutorial.client.shared.ContactStorageService;
 import com.gwidgets.errai.tutorial.client.shared.Operation;
-import com.gwidgets.errai.tutorial.server.services.AbstractMessageCallback;
-import org.jboss.errai.bus.client.api.messaging.Message;
-import org.jboss.errai.bus.client.api.messaging.MessageBus;
 import org.jboss.errai.bus.client.api.messaging.RequestDispatcher;
 import org.jboss.errai.bus.server.annotations.Service;
 import org.slf4j.Logger;
@@ -32,9 +29,7 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static com.gwidgets.errai.tutorial.client.shared.Operation.OperationType.*;
 
@@ -48,6 +43,9 @@ import static com.gwidgets.errai.tutorial.client.shared.Operation.OperationType.
 public class ContactStorageServiceImpl implements ContactStorageService  {
 
     public static final String CONTACTSTORAGE_SUBJECT = "ContactStorageServiceImpl";
+
+    @Inject
+    private ContactEntityService entityService;
 
     @Inject
     protected Logger logger;
@@ -67,19 +65,15 @@ public class ContactStorageServiceImpl implements ContactStorageService  {
     @Inject
     private RequestDispatcher dispatcher;
 
-    private static List<Contact> contacts = new ArrayList<>();
-
     @Override
     public List<Contact> getAllContacts() {
-        return contacts;
+        return entityService.getAllContacts();
     }
 
     @Override
     public Response create(final ContactOperation contactOperation) {
         logger.debug("create " + contactOperation.getContact());
-        long id = contacts.isEmpty() ? 0 : contacts.get(contacts.size() - 1).getId() + 1;
-        contactOperation.getContact().setId(id);
-        contacts.add(contactOperation.getContact());
+        entityService.create(contactOperation.getContact());
         // This event is delivered to call connected clients.
         created.fire(contactOperation);
         return Response.created(UriBuilder.fromResource(ContactStorageService.class)
@@ -89,9 +83,7 @@ public class ContactStorageServiceImpl implements ContactStorageService  {
     @Override
     public Response update(final ContactOperation contactOperation) {
         logger.debug("update " + contactOperation.getContact());
-        // Simulating update
-        delete(contactOperation.getContact().getId());
-        contacts.add(contactOperation.getContact());
+        entityService.update(contactOperation.getContact());
         // This event is delivered to call connected clients.
         updated.fire(contactOperation);
         return Response.noContent().build();
@@ -100,8 +92,7 @@ public class ContactStorageServiceImpl implements ContactStorageService  {
     @Override
     public Response delete(Long id) {
         logger.debug("delete " + id);
-        Optional<Contact> first = contacts.parallelStream().filter(contact -> contact.getId() == id).findFirst();
-        first.ifPresent(contact -> contacts.remove(contact));
+        entityService.delete(id);
         // This event is delivered to call connected clients.
         deleted.fire(id);
         return Response.noContent().build();
