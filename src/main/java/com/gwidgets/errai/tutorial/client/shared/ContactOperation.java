@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.gwidgets.errai.tutorial.client.shared;
 
 import org.jboss.errai.bus.client.api.ClientMessageBus;

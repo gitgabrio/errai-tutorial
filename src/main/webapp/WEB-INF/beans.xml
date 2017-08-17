@@ -4,13 +4,31 @@
 
   <scan>
     <!-- These exclusions were added by Errai to avoid deploying client-side classes to the server -->
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.ContactDisplay" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.ElementalProducer" />
     <exclude name = "com.gwidgets.errai.tutorial.client.local.ReceiverEventPanel" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.BindableTelAnchor" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.PaperInput" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.ContactEditor" />
     <exclude name = "com.gwidgets.errai.tutorial.client.local.SenderMessagePanel" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.JQueryProducer$JQueryArray" />
     <exclude name = "com.gwidgets.errai.tutorial.client.local.App" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.JQueryProducer$JQuery" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.JQueryProducer$JQueryElement" />
     <exclude name = "com.gwidgets.errai.tutorial.client.local.SenderEventPanel" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.BaseContactView" />
     <exclude name = "com.gwidgets.errai.tutorial.client.local.MessageListener" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.Click$Type" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.DateConverter" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.PaperTextArea" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.Click" />
     <exclude name = "com.gwidgets.errai.tutorial.client.local.Receiver" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.BindableEmailAnchor" />
     <exclude name = "com.gwidgets.errai.tutorial.client.local.ReceiverMessagePanel" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.TutorialPage" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.NavBar" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.JQueryProducer" />
+    <exclude name = "com.gwidgets.errai.tutorial.client.local.ContactListPage" />
     <!-- End of Errai exclusions -->
   </scan>
 </beans>

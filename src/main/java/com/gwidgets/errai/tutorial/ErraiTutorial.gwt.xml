@@ -3,6 +3,7 @@
         "http://google-web-toolkit.googlecode.com/svn/releases/1.6/distro-source/core/src/gwt-module.dtd">
 <module rename-to="ErraiTutorial">
     <inherits name="org.jboss.errai.enterprise.All"/>
+    <inherits name="elemental2.dom.Dom" />
     <!-- slf4j - logging -->
     <inherits name="org.jboss.errai.common.ErraiCommon"/>
     <set-property name="gwt.logging.enabled" value="TRUE"/>
